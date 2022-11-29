@@ -1,0 +1,56 @@
+.nav{  z-index: 9999; }
+
+/* 1뎁스 */
+.container{position: relative; z-index: 9998; width: 100px;height: 100vh; background: #262626; transition: all 0.6s; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px; box-sizing: border-box;}
+.container.active{box-shadow: rgba(0, 0, 0, 0.40) 10px 0px 10px;}
+
+/* 메뉴 로고 */
+.logo{width: 50px;height: 50px;cursor: pointer;}
+.logo img{width: 100%;height: 100%;object-fit: cover;}
+
+/* 메뉴 열기 */
+.menu_btn{margin-top: 20px;}
+.menu_btn .btn{width: 50px;height: 50px;background: #444; border-radius: 50%; position: relative; cursor: pointer;}
+.menu_btn .btn span{display: block; width: 25px;height: 2px;  transition: all 0.4s; background: #fff; position: absolute; top: 50%; left: 50%;transform: translate(-50%,-50%);}
+.menu_btn .btn span:nth-child(1){top: calc(50% - 4px);}
+.menu_btn .btn span:nth-child(2){top: calc(50% + 4px);}
+
+/* 메뉴 닫기 */
+.menu_btn .btn.close{}
+.menu_btn .btn.close span:nth-child(1){transform: rotate(45deg); top: 50%; left: 25%;}
+.menu_btn .btn.close span:nth-child(2){transform: rotate(-45deg); top: 50%; left: 25%;}
+
+/* 회원정보 */
+.user{}
+.user .login{}
+.user .login em{font-size: 16px; font-weight: 500; color: #fff; cursor: pointer;}
+
+/* 2뎁스 메뉴 */
+.menu{width: 300px;height: 100vh; padding: 20px 40px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.40) 10px 0px 10px; position: absolute; top: 0;left: -300px;transition: all 0.6s; background: #262626; z-index: 9000;}
+.menu.active{left: 100px;}
+.menu .search{width: 100%; padding: 10px 0; box-sizing: border-box; border-bottom: 1px solid #ccc; position: relative;}
+.menu .search input{ font-size: 16px; color: #fff;  background: none; border: none;  outline: none;}
+.menu .search input::placeholder{font-size: 16px; font-weight: 500; color: #ccc;}
+.menu .search .icon{font-size: 16px; color: #ccc; position: absolute; top: 50%;right: 0; transform: translateY(-50%); cursor: pointer;}
+
+.menu .movie_sort{margin-top: 40px;}
+.menu .movie_sort ul{}
+.menu .movie_sort ul li{margin-bottom: 10px; }
+.menu .movie_sort ul li:last-child{margin-bottom: 0;}
+.menu .movie_sort ul li em{color: #ccc; font-size: 16px; font-weight: 500;cursor: pointer;}
+
+.menu .genre{margin-top: 40px;}
+.menu .genre h2{color: #eee; font-size: 18px;font-weight: 600; margin-bottom: 10px;}
+.menu .genre ul{}
+.menu .genre ul li{margin-bottom: 10px;}
+.menu .genre ul li:last-child{margin-bottom: 0;}
+.menu .genre ul li em{color: #ccc; font-size: 16px; font-weight: 500;cursor: pointer;}
+
+@media (max-width:400px){
+    .container{width: 80px;}
+    .menu{width: 240px; padding: 20px;}
+    .menu.active{left: 80px;}
+}
+
+
+
