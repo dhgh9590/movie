@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../styles/Home.module.css';
 import Banner from '../pages/Main/Banner';
-
+import Section from '../pages/Main/Section';
+import { movieData } from '../src/context/data';
 /* prop 타입체크 */
 // import PropTypes from 'prop-types';
 
@@ -10,11 +11,13 @@ import Banner from '../pages/Main/Banner';
 // import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
+  const { movieList } = useContext(movieData);
   return (
     <main className={styles.main}>
       <section className={styles.banner}>
-        <Banner></Banner>
+        <Banner movieList={movieList}></Banner>
       </section>
+      <Section></Section>
     </main>
   );
 };

@@ -21,7 +21,7 @@
 
 .slide > p{max-width: 1000px; font-size: 14px; color: #ccc; margin: 10px 0;  transform: translateY(10px); opacity: 0; transition: all 1s; transition-delay: 1.2s;}
 
-.slide .actor{transform: translateY(10px); opacity: 0; transition: all 1s; transition-delay: 1.4s;}
+.slide .actor{display: flex; transform: translateY(10px); opacity: 0; transition: all 1s; transition-delay: 1.4s;}
 .slide .actor em{max-width: 1000px; font-size: 14px; color: #fff; overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;}
 
 .slide .btn{margin-top: 20px; transform: translateY(10px); opacity: 0; transition: all 1s; transition-delay: 1.6s;}
