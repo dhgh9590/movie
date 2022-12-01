@@ -35,7 +35,7 @@ const Index = () => {
                   </div>
                   <div className={styles.text}>
                     <em>
-                      <strong>{item.grade}</strong> / 5
+                      <strong>{parseFloat(item.grade).toFixed(1)}</strong> / 5
                     </em>
                     <h2>{item.title}</h2>
                   </div>
