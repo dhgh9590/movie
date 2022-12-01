@@ -47,7 +47,7 @@ const Index = () => {
     onUserStateChange(user => {
       setUserInfo(user);
     });
-  }, []);
+  }, [setUserInfo]);
 
   return (
     <nav className={styles.nav}>

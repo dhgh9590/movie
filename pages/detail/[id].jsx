@@ -24,7 +24,8 @@ const Index = () => {
 
   useEffect(() => {
     filter();
-  }, [movieList]);
+  });
+
   return (
     <section className={styles.section}>
       <div className={styles.main_img}>
