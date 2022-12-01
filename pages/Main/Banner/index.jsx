@@ -7,18 +7,17 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import styles from './style.module.css';
-
-// import required modules
 import { Navigation, Pagination } from 'swiper';
 import dataFilter from '../../../src/hooks/filter';
-import { PATH } from '../../../src/context/path';
+import { PATH } from '../../../src/constants/path';
 
 export default function App({ movieList }) {
   const [data, setData] = useState(); //필터 데이터 저장
   const router = useRouter();
 
   useEffect(() => {
-    const data = dataFilter(movieList, 0); //데이터 필터 함수
+    const copy = movieList && [...movieList];
+    const data = dataFilter(copy, 0); //데이터 필터 함수
     setData(data);
   }, [movieList]);
 
@@ -29,7 +28,7 @@ export default function App({ movieList }) {
           modules={[Navigation, Pagination]}
           navigation={true}
           slidesPerView={1}
-          speed={1000}
+          speed={1500}
           initialSlide={1}
           loop={true}
           pagination={{ clickable: true }}
@@ -48,7 +47,11 @@ export default function App({ movieList }) {
                           </div>
                           <div className={`${styles.grade} grade`}>
                             <em>
-                              Grade : <strong>{item.grade}</strong>/5
+                              Grade :{' '}
+                              <strong>
+                                {parseFloat(item.grade).toFixed(1)}
+                              </strong>
+                              /5
                             </em>
                           </div>
                           <h2>{item.title}</h2>

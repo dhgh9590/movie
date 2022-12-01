@@ -1,191 +1,24 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './style.module.css';
+import Action from './Action';
+import Fantasy from './Fantasy';
+import Sf from './Sf';
+import Thriller from './Thriller';
 
-const Index = () => {
+const Index = ({ movieList }) => {
   return (
     <section className={styles.section}>
-      <div className={styles.movie_wrap}>
-        <h2>Action Movie</h2>
-        <ul>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.movie_wrap}>
-        <h2>Fantasy Movie</h2>
-        <ul>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.movie_wrap}>
-        <h2>SF Movie</h2>
-        <ul>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.movie_wrap}>
-        <h2>Romance Movie</h2>
-        <ul>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className={styles.movie}>
-              <div className={styles.img_box}></div>
-              <div className={styles.text_box}>
-                <h4>movie name</h4>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <Action movieList={movieList}></Action>
+      <Fantasy movieList={movieList}></Fantasy>
+      <Sf movieList={movieList}></Sf>
+      <Thriller movieList={movieList}></Thriller>
     </section>
   );
+};
+
+Index.propTypes = {
+  movieList: PropTypes.array,
 };
 
 export default Index;

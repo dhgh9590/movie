@@ -6,8 +6,12 @@ import NavBar from '../src/components/NavBar';
 import axios from 'axios';
 import { movieData } from '../src/context/data';
 import { BASE_URL, URL } from '../src/constants/api';
+import { userData } from '../src/context/user';
+import { searchText } from '../src/context/search';
 function MyApp({ Component, pageProps }) {
   const [movieList, setMovieList] = useState();
+  const [userInfo, setUserInfo] = useState();
+  const [searchValue, setSearchValue] = useState(); //검색어 저장
 
   const handleData = async () => {
     try {
@@ -23,10 +27,14 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <div className="container">
-      <NavBar></NavBar>
-      <movieData.Provider value={{ movieList, setMovieList }}>
-        <Component {...pageProps} />
-      </movieData.Provider>
+      <searchText.Provider value={{ searchValue, setSearchValue }}>
+        <userData.Provider value={{ userInfo, setUserInfo }}>
+          <NavBar></NavBar>
+          <movieData.Provider value={{ movieList, setMovieList, handleData }}>
+            <Component {...pageProps} />
+          </movieData.Provider>
+        </userData.Provider>
+      </searchText.Provider>
     </div>
   );
 }

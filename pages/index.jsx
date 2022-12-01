@@ -17,7 +17,7 @@ const Home = () => {
       <section className={styles.banner}>
         <Banner movieList={movieList}></Banner>
       </section>
-      <Section></Section>
+      <Section movieList={movieList}></Section>
     </main>
   );
 };

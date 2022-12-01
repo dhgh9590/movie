@@ -1,19 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-import { PATH } from '../../context/path';
 import { onLogin, onLogout, onUserStateChange } from '../../constants/firebase';
+import { PATH } from '../../constants/path';
+import { userData } from '../../context/user';
+import axios from 'axios';
+import { BASE_URL, URL } from '../../../src/constants/api';
+import { searchText } from '../../context/search';
 
 const Index = () => {
   const [active, setActive] = useState(false);
+  const { searchValue, setSearchValue } = useContext(searchText);
   const router = useRouter();
-  const [user, setUser] = useState(); // state를 만들고
+  const { userInfo, setUserInfo } = useContext(userData);
 
   //로그인 함수
   const handleLogin = () => {
     onLogin();
+    router.push(PATH.HOME);
+  };
+
+  const handleSearch = () => {
+    axios
+      .post(`${BASE_URL}/${URL.SEARCH}`, {
+        search: searchValue,
+      })
+      .then(res => {
+        localStorage.setItem(`search`, JSON.stringify(res.data.searchItem));
+        setSearchValue('');
+        router.push(`/${PATH.SEARCH}`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   //로그아웃 함수
@@ -24,7 +45,7 @@ const Index = () => {
   //사용자 정보 저장(새로고침 해도 기억됨)
   useEffect(() => {
     onUserStateChange(user => {
-      setUser(user);
+      setUserInfo(user);
     });
   }, []);
 
@@ -53,16 +74,16 @@ const Index = () => {
           </div>
         </div>
         <div className={styles.user}>
-          {!user ? (
+          {!userInfo ? (
             <div className={styles.login} onClick={handleLogin}>
               <em>Login</em>
             </div>
           ) : (
             <div className={styles.logout} onClick={handleLogout}>
               <div className={styles.user_img}>
-                <img src={user.photoURL} alt="" />
+                <img src={userInfo.photoURL} alt="" />
               </div>
-              <h4>{user.displayName}</h4>
+              <h4>{userInfo.displayName}</h4>
               <em>Logout</em>
             </div>
           )}
@@ -70,36 +91,56 @@ const Index = () => {
       </div>
       <div className={`${styles.menu} ${active && styles.active}`}>
         <div className={styles.search}>
-          <input type="text" placeholder="Search" />
-          <FontAwesomeIcon icon={faSearch} className={styles.icon} />
-        </div>
-        <div className={styles.movie_sort}>
-          <ul>
-            <li>
-              <em>Latest Movie</em>
-            </li>
-            <li>
-              <em>Highly Rated Movies</em>
-            </li>
-          </ul>
+          <form>
+            <input
+              type="text"
+              placeholder="Search"
+              defaultValue={searchValue}
+              value={searchValue || ''}
+              onChange={e => {
+                setSearchValue(e.target.value);
+              }}
+            />
+            <button
+              onClick={e => {
+                e.preventDefault();
+                handleSearch();
+              }}
+            >
+              <FontAwesomeIcon icon={faSearch} className={styles.icon} />
+            </button>
+          </form>
         </div>
         <div className={styles.genre}>
           <h2>GENRE</h2>
           <ul>
-            <li>
+            <li
+              onClick={() => {
+                router.push(`/${PATH.ACTION}`);
+              }}
+            >
               <em>Action Movie</em>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                router.push(`/${PATH.FANTASY}`);
+              }}
+            >
               <em>Fantasy Movie</em>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                router.push(`/${PATH.SF}`);
+              }}
+            >
               <em>SF Movie</em>
             </li>
-            <li>
-              <em>Romance movie</em>
-            </li>
-            <li>
-              <em>Horror Movie</em>
+            <li
+              onClick={() => {
+                router.push(`/${PATH.THRILLER}`);
+              }}
+            >
+              <em>Thriller Movie</em>
             </li>
           </ul>
         </div>

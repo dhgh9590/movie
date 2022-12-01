@@ -6,11 +6,10 @@ import { movieData } from '../../src/context/data';
 import { handlePlus } from '../../src/hooks/filter';
 
 const Index = () => {
-  const { movieList } = useContext(movieData);
+  const { movieList, handleData } = useContext(movieData);
   const router = useRouter();
   const { id } = router.query; //현재 페이지의 /이후의 주소값을 반환
   const [data, setData] = useState();
-  console.log(data);
 
   function filter() {
     const copy = movieList && [...movieList];
@@ -74,9 +73,9 @@ const Index = () => {
           </div>
           <div className={styles.grade}>
             <div className={styles.count}>
-              <em>{data && data.grade}</em>
+              <em>{parseFloat(data && data.grade).toFixed(1)}</em>
             </div>
-            <Star></Star>
+            <Star id={id} handleData={handleData} data={data}></Star>
           </div>
         </div>
         <div className={styles.photo}>
