@@ -12,6 +12,7 @@ const Index = ({ id, handleData }) => {
   const [newArray, setNewArray] = useState(); //평점 목록
   const [userArray, setSuerArray] = useState(); //평점 사용자 목록
   const [user, setUser] = useState(); //사용자
+  const [data, setData] = useState();
 
   /* 별점 생성 */
   const [clicked, setClicked] = useState([false, false, false, false, false]);
@@ -41,6 +42,7 @@ const Index = ({ id, handleData }) => {
       grade_user: userCopy, //평점 등록한 사용자 목록
     });
     handleData();
+    onData();
   };
 
   //영화 목록 데이터 가지고 오기
@@ -49,30 +51,41 @@ const Index = ({ id, handleData }) => {
       const res = await axios.get(`${BASE_URL}/${URL.LIST}`);
       const data = res.data.movie;
       //영화 목록의 id와 현재 내가 클릭한 영화 id 비교해서 일치하면 반환함
-      const add = data.filter(item => {
-        return item.id == id;
-      });
-      setNewArray(add[0].grade); //평점 배열 저장
-      setSuerArray(add[0].grade_user); //평점 등록한 사용자 배열 저장
+      setData(data);
+      userCheck(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  //평점 등록한 사람과 현재 로그인한 사람이 동일한지 판단
-  function userFilter() {
-    let userCopy = userArray && [...userArray];
-    const user =
-      userCopy &&
-      userCopy.filter(item => {
+  //유저 체크
+  const userCheck = data => {
+    //영화 목록중 현재 id와 같은 아이템을 반환
+    const filterData =
+      data &&
+      data.filter(item => {
+        return item.id == id;
+      });
+    const copy = filterData && [...filterData];
+    const gradeUser = copy && copy[0]?.grade_user;
+    //아이템의 유저중 로그인한 유저와 같은것을 반환
+    const userFilter =
+      gradeUser &&
+      gradeUser.filter(item => {
         return item == userInfo?.uid;
       });
-    setUser(user);
-  }
+    setUser(userFilter);
+    setNewArray(filterData && filterData[0]?.grade); //평점 배열 저장
+    setSuerArray(filterData && filterData[0]?.grade_user); //평점 등록한 사용자 배열 저장
+  };
+
+  useEffect(() => {
+    userCheck(data);
+  }, [userInfo]);
 
   useEffect(() => {
     handleData();
-    userFilter();
+    userCheck(data);
   }, [newArray]);
 
   useEffect(() => {

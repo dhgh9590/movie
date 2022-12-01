@@ -19,7 +19,6 @@ const Index = () => {
   //로그인 함수
   const handleLogin = () => {
     onLogin();
-    router.push(PATH.HOME);
   };
 
   const handleSearch = () => {
