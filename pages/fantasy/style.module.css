@@ -20,11 +20,14 @@
     .section ul{grid-template-columns: repeat(2,minmax(250px,auto));}
 }
 
+@media (max-width:767px){
+    .section{padding-left: 80px;}
+}
+
 @media (max-width:680px){
     .section ul{grid-template-columns: repeat(1,minmax(250px,auto));}
 }
 
 @media (max-width:400px){
-    .section{padding-left: 100px;}
     .section ul{grid-template-columns: repeat(1,minmax(150px,auto));}
 }

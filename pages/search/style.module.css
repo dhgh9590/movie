@@ -11,7 +11,7 @@
 .section ul li .text{margin-top: 10px;}
 .section ul li .text h2{font-size: 16px;color: #fff; overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;}
 
-@media (max-width:400px){
-    .section{padding-left: 100px;}
+@media (max-width:767px){
+    .section{padding-left: 80px;}
 }
 
