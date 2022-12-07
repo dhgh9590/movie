@@ -3,6 +3,7 @@
 
 export default function dataFilter(movieList, categoryNumber) {
   const copy = movieList && [...movieList];
+  //카테고리에 배열로 들어와있다면 카테고리 배열만큼 반복문을 실행해서 해당하는 카테고리를 리턴시킴
   const newData =
     copy &&
     copy.filter(item => {
@@ -12,7 +13,6 @@ export default function dataFilter(movieList, categoryNumber) {
         }
       }
     });
-
   const data = handlePlus(newData);
   return data;
 }
