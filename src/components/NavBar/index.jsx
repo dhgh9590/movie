@@ -30,6 +30,7 @@ const Index = () => {
         localStorage.setItem(`search`, JSON.stringify(res.data.searchItem));
         setSearchValue('');
         router.push(`/${PATH.SEARCH}`);
+        setActive(false);
       })
       .catch(error => {
         console.log(error);
@@ -39,6 +40,11 @@ const Index = () => {
   //로그아웃 함수
   const handleLogout = () => {
     onLogout();
+  };
+
+  const handleRouter = path => {
+    router.push(`/${path}`);
+    setActive(false);
   };
 
   //사용자 정보 저장(새로고침 해도 기억됨)
@@ -56,6 +62,7 @@ const Index = () => {
             className={styles.logo}
             onClick={() => {
               router.push(PATH.HOME);
+              setActive(false);
             }}
           >
             <img src="/images/logo.png" alt="" />
@@ -115,28 +122,28 @@ const Index = () => {
           <ul>
             <li
               onClick={() => {
-                router.push(`/${PATH.ACTION}`);
+                handleRouter(PATH.ACTION);
               }}
             >
               <em>Action Movie</em>
             </li>
             <li
               onClick={() => {
-                router.push(`/${PATH.FANTASY}`);
+                handleRouter(PATH.FANTASY);
               }}
             >
               <em>Fantasy Movie</em>
             </li>
             <li
               onClick={() => {
-                router.push(`/${PATH.SF}`);
+                handleRouter(PATH.SF);
               }}
             >
               <em>SF Movie</em>
             </li>
             <li
               onClick={() => {
-                router.push(`/${PATH.THRILLER}`);
+                handleRouter(PATH.THRILLER);
               }}
             >
               <em>Thriller Movie</em>
